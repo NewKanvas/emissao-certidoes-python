@@ -4,29 +4,21 @@ Este projeto visa automatizar a emissão de certidões utilizando Python, sem in
 
 ### **Certidões Disponíveis:**
 
-1. **Certidão Regularidade Fiscal PF (RFB e PGFN)**
-   - URL: [Certidão Regularidade Fiscal PF](https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PF/EmitirPGFN)
+1. **[Certidão Regularidade Fiscal PF (RFB e PGFN)](https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PF/EmitirPGFN)**
 
-2. **Certidão de Regularidade Fiscal SEFAZ/RJ**
-   - URL: [Certidão SEFAZ/RJ](https://www4.fazenda.rj.gov.br/certidao-fiscal-web/emitirCertidao.jsf)
+2. **[Certidão de Regularidade Fiscal SEFAZ/RJ](https://www4.fazenda.rj.gov.br/certidao-fiscal-web/emitirCertidao.jsf)**
 
-3. **Certidão de Regularidade Fiscal SEFAZ/ES**
-   - URL: [Certidão SEFAZ/ES](https://s2-internet.sefaz.es.gov.br/certidao/cnd)
+3. **[Certidão de Regularidade Fiscal SEFAZ/ES](https://s2-internet.sefaz.es.gov.br/certidao/cnd)**
 
-4. **RIO: Dívida Ativa Mun.**
-   - URL: [RIO Dívida Ativa Mun.](https://daminternet.rio.rj.gov.br/certidao/Requerimento)
+4. **[RIO: Dívida Ativa Mun.](https://daminternet.rio.rj.gov.br/certidao/Requerimento)**
 
-5. **Certidão Negativa de Débitos de Tributos Municipais (Vitória)**
-   - URL: [Certidão Tributos Municipais](https://tributario.vitoria.es.gov.br/Servicos/CertidaoNegativa/CertidaoNegativa.aspx)
+5. **[Certidão Negativa de Débitos de Tributos Municipais (Vitória)](https://tributario.vitoria.es.gov.br/Servicos/CertidaoNegativa/CertidaoNegativa.aspx)**
 
-6. **Certidão Negativa da Justiça Federal do TRF-2 (Cível)**
-   - URL: [Certidão TRF-2 (Cível)](https://certidoes.trf2.jus.br/certidoes/#/principal/solicitar)
+6. **[Certidão Negativa da Justiça Federal do TRF-2 (Cível)](https://certidoes.trf2.jus.br/certidoes/#/principal/solicitar)**
 
-7. **Certidão Negativa da Justiça Federal do TRF-2 (Criminal)**
-   - URL: [Certidão TRF-2 (Criminal)](https://certidoes.trf2.jus.br/certidoes/#/principal/solicitar)
+7. **[Certidão Negativa da Justiça Federal do TRF-2 (Criminal)](https://certidoes.trf2.jus.br/certidoes/#/principal/solicitar)**
 
-8. **Certidão negativa no TJES**
-   - URL: [Certidão TJES](https://sistemas.tjes.jus.br/certidaonegativa/sistemas/certidao/CERTIDAOPESQUISA.cfm)
+8. **[Certidão negativa no TJES](https://sistemas.tjes.jus.br/certidaonegativa/sistemas/certidao/CERTIDAOPESQUISA.cfm)**
 
 ### Funcionalidades:
 
