@@ -1,0 +1,15 @@
+Relatório de Emissão de Certidão Regularidade Fiscal PF (RFB e PGFN)
+
+Número do processo: 778899445566112233
+Nome completo: Jonas Errado
+CPF: 07898745325
+Endereço: 0
+Cidade: 0
+UF: 0
+
+Dados não prenchidos corretamente:
+- endereco
+- cidade
+- uf
+
+Status do PDF: PDF gerado corretamente.
