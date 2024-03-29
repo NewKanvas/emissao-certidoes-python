@@ -44,29 +44,6 @@ class RFB_PGFN:
         primeiro_nome = self.nome_completo.split()[0]
         id_job = f"{self.no_proc_pagamento}_{primeiro_nome}_{self.cpf}_{id}"
 
-        print("Abrindo navegador...")
-        navegador = webdriver.Chrome(service=servico)  # Abrindo navegador
-        print("Navegador aberto com sucesso.")
-
-        print("Acessando site...")
-        navegador.get(
-            "https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PF/EmitirPGFN"
-        )
-        print("Site acessado.")
-
-        print("Preenchendo CPF...")
-        navegador.find_element("xpath", '//*[@id="NI"]').send_keys(f"{self.cpf}")
-        print("CPF preenchido.")
-
-        print("Clicando em validar...")
-        navegador.find_element("xpath", '//*[@id="validar"]').click()
-        print("Validação concluída.")
-
-        print("Esperando...")
-        navegador.implicitly_wait(50)
-
-        print("Emitir função concluída.")
-
     def emitir_relatorio(self):
         # Criando Relatorio
         primeiro_nome = self.nome_completo.split()[0]
