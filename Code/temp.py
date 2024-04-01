@@ -16,6 +16,7 @@ from utils import *
 
 # ---
 
+
 # Configuração do ChromeOptions
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -25,12 +26,35 @@ options.add_experimental_option("useAutomationExtension", False)
 
 no_proc_pagamento = "1234567890"  # teste
 url = "https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PF/EmitirPGFN"
-cpf = "xxxxxxx"  # Trocar para um CPF valido
+cpf = "xxxxxxxxx"  # Trocar para um CPF valido
 primeiro_nome = "Jonas"  # teste
 id = "1"
 id_job = f"{no_proc_pagamento}_{primeiro_nome}_{cpf}_{id}.pdf"
 
 log = []
+
+# Configurando Pasta de Download e log
+
+dir_path = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "Data", "Jobs", no_proc_pagamento)
+)
+# Se nao existir cria:
+if not os.path.exists(dir_path):
+    os.makedirs(dir_path)
+
+logs_dir = os.path.join(dir_path, "logs")
+
+
+def createlog(logs_dir):
+    if not os.path.exists(logs_dir):
+        os.makedirs(logs_dir)
+
+    log_path = os.path.join(logs_dir, "log1.txt")
+
+    with open(log_path, "w", encoding="utf-8") as file:
+        for message in log:
+            file.write(message + "\n")
+
 
 # ---
 
@@ -61,11 +85,25 @@ while remove_format(cpf_input.get_attribute("value")) != cpf:
             log,
         )
         driver.quit()
+        createlog(logs_dir)
         exit()
 
 # Clicar no botão para validar
 driver.find_element("xpath", '//*[@id="validar"]').click()
 time.sleep(5)
+
+try:
+    # Verificar se há erro de validação de CPF
+    erro_cpf = driver.find_element(By.XPATH, "//*[contains(text(), 'CPF inválido')]")
+    logprint("Erro: CPF inválido", log)
+
+    driver.quit()
+    createlog(logs_dir)
+    exit()
+
+
+except NoSuchElementException:
+    logprint("CPF válido, continuando a operação...", log)
 
 try:
     # Verificar se da para emiter outra certidão
@@ -95,23 +133,11 @@ finally:
         logprint("Excesso de tentativas, finalizando código...", log)
 
     time.sleep(15)  # Esperar um pouco, para concluir possiveis downloads
-    # Tendo certeza que o navegador fechous
-    try:
-        driver.quit()
-    except WebDriverException:
-        pass
+    driver.quit()
 
 # **Movendo PDF da certidão**
 
 # Configurando pasta de Download
-
-dir_path = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "Data", "Jobs", no_proc_pagamento)
-)
-# Se nao existir cria:
-if not os.path.exists(dir_path):
-    os.makedirs(dir_path)
-
 
 downloads_dir = os.path.join(os.path.expanduser("~"), "Downloads")
 
@@ -119,11 +145,12 @@ file_name = f"Certidao-{cpf}.pdf"
 
 downloaded_file_path = os.path.join(downloads_dir, file_name)
 
-logprint("Verificando se o PDF está sendo usado por algum processo...", log)
-killprov(downloaded_file_path, log)  # Fechando intancias com o pdf aberto
-
 # Verificar se o arquivo foi baixado
 if os.path.exists(downloaded_file_path):
+
+    logprint("Verificando se o PDF está sendo usado por algum processo...", log)
+    killprov(downloaded_file_path, log)  # Fechando intancias com o pdf aberto
+
     # Mover o arquivo para o diretório especificado
     try:
         shutil.move(downloaded_file_path, os.path.join(dir_path, id_job))
@@ -134,13 +161,5 @@ if os.path.exists(downloaded_file_path):
 else:
     logprint(f"Arquivo '{file_name}' não encontrado na pasta de downloads.", log)
 
-logs_dir = os.path.join(dir_path, "logs")
 
-if not os.path.exists(logs_dir):
-    os.makedirs(logs_dir)
-
-log_path = os.path.join(logs_dir, "log1.txt")
-
-with open(log_path, "w", encoding="utf-8") as file:
-    for message in log:
-        file.write(message + "\n")
+createlog(logs_dir)
